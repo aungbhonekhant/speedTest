@@ -1,0 +1,36 @@
+<!-- input header file -->
+<%- include('header') -%>
+
+<div class="text-center center-div">
+    <div class="container w-50 py5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-card text-white py-3">
+                    <h1 class=".fs-1 text-success" id="pin"><%= pin %><small class="fs-6"> ms</small></h1>
+                    <h3 class=".fs-3">Pin </h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-card text-white py-3">
+                    <h1 class=".fs-1 text-danger" id="download"><%= download %><small class="fs-6"> MBps</small></h1>
+                    <h3 class=".fs-3">Download </h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-card text-white py-3">
+                    <h1 class=".fs-1 text-warning" id="upload"><%= upload %><small class="fs-6"> MBps</small></h1>
+                    <h3 class=".fs-3">Upload </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a type="button" onClick="location.reload();" class="btn btn-secondary mt-5" style="margin-right: 5px;">refresh</a>
+        <a type="button" href="/dailyLogs/<%= today %>" class="btn btn-test mt-5">See Daily Logs</a>
+    </div>
+    
+</div>
+
+
+<!-- input footer file -->
+<%- include('footer') -%>

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body{
+    background: #141526;
+    margin: 0;
+    padding: 0;
+    font-family: 'Righteous', cursive;
+}
+.center-div{
+    padding-top: 10%;
+}
+
+.bg-card{
+    background-color: #26273b;
+}
+
+.btn-test{
+    background: linear-gradient(90deg, #0362d5 0%, #01b9e2 100%);
+    color: #fff;
+}

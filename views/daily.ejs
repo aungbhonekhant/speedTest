@@ -1,0 +1,102 @@
+<!-- input header file -->
+<%- include('header') -%>
+<div class="container pt-5">
+  <div class="d-flex justify-content-between w-100">
+    <h5 class="text-white">Daily Benchmark</h5>
+    <div>
+        <input type="date" id="date" value="">         
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <div class="container w-auto py-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-card text-white py-3">
+          <h1 class=".fs-1 text-success" id="pin">
+            <%= data.pin_avg ? data.pin_avg : "--" %><small class="fs-6"> ms</small>
+          </h1>
+          <h3 class=".fs-3">Pin Average</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-card text-white py-3">
+          <h1 class=".fs-1 text-danger" id="download">
+            <%= data.download_avg ? data.download_avg : "--" %><small class="fs-6"> MBps</small>
+          </h1>
+          <h3 class=".fs-3">Download Average</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-card text-white py-3">
+          <h1 class=".fs-1 text-warning" id="upload">
+            <%= data.upload_avg ? data.upload_avg : "--" %><small class="fs-6"> MBps</small>
+          </h1>
+          <h3 class=".fs-3">Upload Average</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <canvas id="myChart" style="height:40vh; width:80vw"></canvas>
+</div>
+
+<!-- passing data to script -->
+<input type="text" id="getID" style="display: none" value="<%= data.pin %>">
+<% var pin = data.pin; var download= data.download; var upload = data.upload; var labels = data.labels; %> 
+<!--/ passing data to script -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script >
+    const pin = '<%= pin%>';
+    const download = '<%= download%>';
+    const upload = '<%= upload %>';
+    const labels = '<%= labels %>';
+    console.log("pin",pin.split(','));
+    console.log("download",download.split(','));
+    console.log("upload",upload.split(','));
+    console.log("labels",labels.split(','));
+    //chart script
+    const ctx = document.getElementById('myChart');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels.split(','),
+                datasets: [{ 
+                    data: pin.split(','),
+                    label: "pin",
+                    borderColor: "#3e95cd",
+                    fill: false
+                }
+                , { 
+                    data: download.split(','),
+                    label: "download",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                }, { 
+                    data: upload.split(','),
+                    label: "upload",
+                    borderColor: "#3cba9f",
+                    fill: false
+                },
+                ]
+            },
+            options: {
+                title: {
+                display: true,
+                text: 'World population per region (in millions)'
+                }
+            }
+        });
+
+    //on select date
+    $("#date").on('change', function(e){
+        e.preventDefault();
+        let date = $("#date").val();
+        window.location.href = `/dailyLogs/${date}`; //just for testing purpose
+    })
+</script>
+<!-- input footer file -->
+<%- include('footer') -%>
